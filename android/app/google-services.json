@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "360928311510",
+    "firebase_url": "https://tastecarefyp-7a9cd.firebaseio.com",
+    "project_id": "tastecarefyp-7a9cd",
+    "storage_bucket": "tastecarefyp-7a9cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360928311510:android:d76e90ada2025e68f93177",
+        "android_client_info": {
+          "package_name": "com.example.foodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360928311510-b32vj4qiocahfb9rn1sa6rkcb7svl04g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxyzmDELZewdKo7NyBNXEqlhHnt5m9oUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360928311510-b32vj4qiocahfb9rn1sa6rkcb7svl04g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
