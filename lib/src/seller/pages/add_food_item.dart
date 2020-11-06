@@ -82,6 +82,8 @@ class _AddFoodItemState extends State<AddFoodItem> {
         name: title,
         category: category,
         description: description,
+        price: double.parse(price),
+        discount: double.parse(discount),
       );
       bool value = await addFood(food);
       if (value) {

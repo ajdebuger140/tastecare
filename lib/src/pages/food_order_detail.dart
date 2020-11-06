@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:foodapp/src/widgets/button.dart';
 
 class FoodOrderdeatil extends StatefulWidget {
-  FoodOrderdeatil({Key key}) : super(key: key);
-
   @override
   _FoodOrderdeatilState createState() => _FoodOrderdeatilState();
 }
@@ -29,12 +27,16 @@ class _FoodOrderdeatilState extends State<FoodOrderdeatil> {
                   width: MediaQuery.of(context).size.width,
                   height: 0.0,
                 ),
+                _buildTextFormField("Name"),
                 _buildTextFormField("Delivery Adress"),
                 _buildTextFormField("Quantity"),
                 _buildTextFormField("Contact number"),
                 SizedBox(height: 100.0),
-                Button(
-                  btnText: "Submitt to  Order",
+                GestureDetector(
+                  child: Button(
+                    btnText: "Submitt Order",
+                  ),
+                  onTap: () {},
                 ),
               ],
             ),

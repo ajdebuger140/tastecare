@@ -15,7 +15,7 @@ class FoodModel extends Model {
   }
 
   Future<bool> addFood(Food food) async {
-    // _foods.add(food); //this one now uncommented
+    _foods.add(food); //this one now uncommented //isko comment kro
     _isloading = true;
     notifyListeners();
     try {
@@ -30,14 +30,13 @@ class FoodModel extends Model {
           "https://tastecarefyp-7a9cd.firebaseio.com/foods.json",
           body: json.encode(foodData));
       final Map<String, dynamic> responseData = json.decode(response.body);
-      //print(responseData["name"]);
-      // ignore: unused_local_variable
+
       Food foodWithID = Food(
         id: responseData["name"],
         name: food.name,
         description: food.description,
-        discount: food.discount,
         category: food.category,
+        discount: food.discount,
         price: food.price,
       );
       _foods.add(foodWithID);
@@ -50,7 +49,7 @@ class FoodModel extends Model {
       _isloading = false;
       notifyListeners();
       return Future.value(false);
-      // print("Connection error:$e");
+    
     }
   }
 
@@ -66,15 +65,15 @@ class FoodModel extends Model {
       print(fetchedData);
       final List<Food> foodItems = [];
       fetchedData.forEach((String id, dynamic foodData) {
-        Food foodItem = Food(
-          id: id,
+        Food food = Food(
+          id: foodData["id"],
           name: foodData["title"],
           description: foodData["description"],
           category: foodData["category"],
-          price: foodData["price"],
-          discount: foodData["discount"],
+          price: double.parse(foodData["price"]),
+          discount: double.parse(foodData["discount"]),
         );
-        foodItems.add(foodItem);
+        foodItems.add(food);
       });
       _foods = foodItems;
       _isloading = false;

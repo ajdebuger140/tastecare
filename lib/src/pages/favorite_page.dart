@@ -15,7 +15,7 @@ class _FavoritePageState extends State<FavoritePage> {
   @override
   void initState() {
     super.initState();
-    //  widget.model.fetchFoods(); // ye walla
+    //widget.model.fetchFoods(); // ye walla
   }
 
   @override

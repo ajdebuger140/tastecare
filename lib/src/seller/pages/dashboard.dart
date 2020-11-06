@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:foodapp/src/seller/pages/add_food_item.dart';
+import 'package:foodapp/src/seller/pages/my_order.dart';
 
 class DashBoard extends StatefulWidget {
   DashBoard({Key key}) : super(key: key);
@@ -28,7 +29,10 @@ class DashBoardState extends State<DashBoard> {
               leading: Icon(Icons.notification_important),
               title: Text("My Order"),
               subtitle: Text("new upcoming orders"),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (BuildContext context) => MyOrder()));
+              },
             ),
           ),
           Card(

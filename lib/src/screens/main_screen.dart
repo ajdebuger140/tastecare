@@ -49,26 +49,6 @@ class _MainScreenState extends State<MainScreen> {
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        // drawer: Drawer(
-        //   child: Column(
-        //     children: [
-        //       ListTile(
-        //         onTap: () {
-        //           Navigator.of(context).push(MaterialPageRoute(
-        //               builder: (BuildContext context) => AddFoodItem()));
-        //         },
-        //         leading: Icon(
-        //           Icons.list,
-        //           color: Colors.black,
-        //         ),
-        //         title: Text(
-        //           "Become Seller",
-        //           style: TextStyle(fontSize: 16.0, color: Colors.pink),
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (int index) {
             setState(() {
