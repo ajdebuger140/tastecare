@@ -25,49 +25,65 @@ class _AddFoodItemState extends State<AddFoodItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldStateKey,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 16.0),
-          // width: MediaQuery.of(context).size.width,
-          //height: MediaQuery.of(context).size.height,
-          child: Form(
-            key: _foodItemFormKey,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: 15.0),
-                  width: MediaQuery.of(context).size.width,
-                  height: 150,
-                  decoration: BoxDecoration(
-                      // color: Colors.orange,
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                        image: AssetImage("assets/noimage.png"),
-                      )),
-                ),
-                _buildTextFormField("Food Title"),
-                _buildTextFormField("Category"),
-                _buildTextFormField("Description", maxLine: 3),
-                _buildTextFormField("Price"),
-                _buildTextFormField("Discount"),
-                SizedBox(
-                  height: 30.0,
-                ),
-                ScopedModelDescendant(
-                    builder: (BuildContext, Widget child, MainModel model) {
-                  return GestureDetector(
-                    onTap: () {
-                      OnSubmit(model.addFood);
-                      if (model.isloading) {
-                        showLoadingIndicator();
-                      }
+      body: ScopedModelDescendant(
+          builder: (BuildContext, Widget child, MainModel model) =>
+       SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 60.0, horizontal: 16.0),
+            // width: MediaQuery.of(context).size.width,
+            //height: MediaQuery.of(context).size.height,
+            child: Form(
+              key: _foodItemFormKey,
+              child: Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () async{
+                      await model.getImageFromGallery();
                     },
-                    child: Button(
-                      btnText: "Add Food Item",
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 15.0),
+                      width: MediaQuery.of(context).size.width,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          // color: Colors.orange,
+                          borderRadius: BorderRadius.circular(10.0),
+                          image: DecorationImage(
+                            image: model.image == null ? AssetImage("assets/noimage.png"): FileImage(model.image),
+                          )),
                     ),
-                  );
-                }),
-              ],
+                  ),
+                  _buildTextFormField("Food Title"),
+                  _buildTextFormField("Category"),
+                  _buildTextFormField("Description", maxLine: 3),
+                  _buildTextFormField("Price"),
+                  _buildTextFormField("Discount"),
+//                buildTextFormField("Food Title", (val){
+//                  setState(() {
+//                    model.food.name = val;
+//                  });
+//                }, (){
+//                  return "The food title is required ";
+//                }),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  //ScopedModelDescendant(
+                      //builder: (BuildContext, Widget child, MainModel model) {
+                   // return
+              GestureDetector(
+                      onTap: () {
+                        OnSubmit(model.addFood);
+                        if (model.isloading) {
+                          showLoadingIndicator();
+                        }
+                      },
+                      child: Button(
+                        btnText: "Add Food Item",
+                      ),
+                    ),
+                  //}),
+                ],
+              ),
             ),
           ),
         ),
@@ -120,6 +136,18 @@ class _AddFoodItemState extends State<AddFoodItem> {
           );
         });
   }
+
+//  Widget buildTextFormField(String hint,  onChange, valid,{maxLine = 1}){
+//    return TextFormField(
+//      decoration: InputDecoration(hintText: "$hint"),
+//      maxLines: maxLine,
+//      keyboardType: hint == "price" || hint == "Discount"
+//          ? TextInputType.number
+//          : TextInputType.text,
+//      validator: valid,
+//      onChanged: onChange,
+//    );
+//  }
 
   Widget _buildTextFormField(String hint, {maxLine = 1}) {
     return TextFormField(

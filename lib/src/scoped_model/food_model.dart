@@ -1,9 +1,22 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:foodapp/src/models/food_model.dart';
+import 'package:foodapp/src/services/database_services.dart';
+import 'package:foodapp/src/services/database_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 
 class FoodModel extends Model {
+  final _dbService = DatabaseService();
+  final _dbStorage = DatabaseStorageServices();
+  //String foodImage;
+  File image;
+  Food food = new Food();
+
+
+
+
   List<Food> _foods = [];
   bool _isloading = false;
   bool get isloading {
@@ -85,4 +98,45 @@ class FoodModel extends Model {
       return Future.value(false);
     }
   }
+
+
+  /// get All Foods
+  fetchAllFoods() async{
+    _foods = await _dbService.fetchFood();
+    _isloading = false;
+    notifyListeners();
+  }
+
+  /// get Image From Gallery
+  Future<bool> getImageFromGallery() async {
+    final pickedImage =
+    await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+      notifyListeners();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /// Add food to database
+  addFoods() async{
+    try{
+      final foodImage = await _dbStorage.uploadImage(image);
+      print("@img url" + foodImage);
+      food.imagePath = foodImage ?? "";
+      await _dbService.addFoods(food);
+      _isloading = false;
+      notifyListeners();
+    }catch(e){
+      print("@addFood Model has exception " +e);
+    }
+
+  }
+
+
+
+
+
 }
