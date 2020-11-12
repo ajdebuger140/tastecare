@@ -26,7 +26,7 @@ class Food {
   String description;
   String imagePath;
   String category;
-  double price;
+  double price ;
   double discount;
   double ratings;
 

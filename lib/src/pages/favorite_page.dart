@@ -23,7 +23,7 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       body: ScopedModelDescendant<MainModel>(
         builder: (BuildContext context, Widget child, MainModel model) {
-          model.fetchFoods(); //this will fetch and notifylistener()
+          model.fetchAllFoods(); //this will fetch and notifylistener()
           List<Food> foods = model.foods;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,6 +32,7 @@ class _FavoritePageState extends State<FavoritePage> {
                 food.name,
                 food.description,
                 food.price.toString(),
+                food.imagePath.toString(),
               );
             }).toList(),
           );

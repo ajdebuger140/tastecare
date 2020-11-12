@@ -6,7 +6,8 @@ class FoodItemCard extends StatelessWidget {
   final String title;
   final String description;
   final String price;
-  FoodItemCard(this.description, this.title, this.price);
+  final image;
+  FoodItemCard(this.description, this.title, this.price, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class FoodItemCard extends StatelessWidget {
             width: 90.0,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/krahai.jpg"), fit: BoxFit.cover),
+                    image: image != null ? NetworkImage(image) :AssetImage("assets/krahai.jpg"), fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(10.0)),
           ),
           Column(

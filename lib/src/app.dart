@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/src/pages/favorite_page.dart';
 //import 'package:foodapp/src/scoped_model/food_model.dart';
 import 'package:foodapp/src/scoped_model/main_model.dart';
 import 'package:foodapp/src/screens/Splash_screen.dart';
@@ -18,7 +19,7 @@ class App extends StatelessWidget {
         theme: ThemeData(primaryColor: Colors.pink),
 
         //  home: //MainScreen(model: mainModel),
-        home: AddFoodItem(),
+        home: FavoritePage(),
         //   home: AddFoodItem(),
       ),
     );
